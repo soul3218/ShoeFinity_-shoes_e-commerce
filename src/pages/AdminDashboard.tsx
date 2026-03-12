@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Plus, Pencil, Trash2, Package, ShoppingBag } from "lucide-react";
 import { toast } from "sonner";
 import type { Shoe } from "@/types";
+import { formatINR } from "@/lib/currency";
 
 const emptyShoe = { name: "", price: 0, image: "", description: "", category: "", sizes: [7, 8, 9, 10, 11], inStock: true };
 
@@ -125,7 +126,7 @@ const AdminDashboard = () => {
                     </div>
                     <div className="flex-1">
                       <h3 className="font-display font-semibold">{shoe.name}</h3>
-                      <p className="text-sm text-muted-foreground">{shoe.category} — ${shoe.price}</p>
+                      <p className="text-sm text-muted-foreground">{shoe.category} — {formatINR(shoe.price)}</p>
                     </div>
                     <div className="flex gap-2">
                       <Button size="sm" variant="outline" onClick={() => handleEdit(shoe)}>
@@ -153,7 +154,7 @@ const AdminDashboard = () => {
                           <p className="text-xs text-muted-foreground">{new Date(order.createdAt).toLocaleDateString()}</p>
                         </div>
                         <div className="text-right">
-                          <span className="font-display font-bold text-gradient">${order.total.toFixed(2)}</span>
+                          <span className="font-display font-bold text-gradient">{formatINR(order.total)}</span>
                           <p className="text-xs text-muted-foreground capitalize">{order.paymentMethod} — {order.status}</p>
                         </div>
                       </div>

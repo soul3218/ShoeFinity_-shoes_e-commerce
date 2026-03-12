@@ -5,6 +5,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { Button } from "@/components/ui/button";
 import { Trash2, Plus, Minus, ShoppingBag } from "lucide-react";
 import { Link, Navigate } from "react-router-dom";
+import { formatINR } from "@/lib/currency";
 
 const Cart = () => {
   const { items, removeFromCart, updateQuantity, total, itemCount } = useCart();
@@ -61,7 +62,7 @@ const Cart = () => {
                             <Plus className="h-4 w-4" />
                           </button>
                         </div>
-                        <span className="font-display font-bold">${(item.shoe.price * item.quantity).toFixed(2)}</span>
+                        <span className="font-display font-bold">{formatINR(item.shoe.price * item.quantity)}</span>
                         <button
                           onClick={() => removeFromCart(item.shoe._id)}
                           className="rounded-md p-1 text-destructive transition-colors hover:bg-destructive/10"
@@ -79,7 +80,7 @@ const Cart = () => {
                 <div className="mt-4 space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Items ({itemCount})</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>{formatINR(total)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-muted-foreground">Shipping</span>
@@ -88,7 +89,7 @@ const Cart = () => {
                   <div className="border-t border-border pt-3">
                     <div className="flex justify-between font-display text-lg font-bold">
                       <span>Total</span>
-                      <span className="text-gradient">${total.toFixed(2)}</span>
+                      <span className="text-gradient">{formatINR(total)}</span>
                     </div>
                   </div>
                 </div>

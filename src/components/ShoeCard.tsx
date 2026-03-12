@@ -5,6 +5,7 @@ import { useCart } from "@/contexts/CartContext";
 import { useAuth } from "@/contexts/AuthContext";
 import { toast } from "sonner";
 import { useState } from "react";
+import { formatINR } from "@/lib/currency";
 
 interface ShoeCardProps {
   shoe: Shoe;
@@ -57,7 +58,7 @@ const ShoeCard = ({ shoe }: ShoeCardProps) => {
         </div>
 
         <div className="mt-4 flex items-center justify-between">
-          <span className="font-display text-xl font-bold text-gradient">${shoe.price}</span>
+          <span className="font-display text-xl font-bold text-gradient">{formatINR(shoe.price)}</span>
           <Button size="sm" onClick={handleAdd}>
             <ShoppingCart className="mr-1 h-4 w-4" /> Add
           </Button>

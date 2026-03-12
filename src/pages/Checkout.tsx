@@ -10,6 +10,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { CreditCard, Smartphone, Truck, CheckCircle } from "lucide-react";
 import { toast } from "sonner";
+import { formatINR } from "@/lib/currency";
 
 type PaymentMethod = "online" | "card" | "cod";
 
@@ -135,12 +136,12 @@ const Checkout = () => {
                   <span>
                     {item.shoe.name} (x{item.quantity}) — Size {item.size}
                   </span>
-                  <span className="font-medium">${(item.shoe.price * item.quantity).toFixed(2)}</span>
+                  <span className="font-medium">{formatINR(item.shoe.price * item.quantity)}</span>
                 </div>
               ))}
               <div className="border-t border-border pt-3 flex justify-between font-display font-bold text-lg">
                 <span>Total</span>
-                <span className="text-gradient">${total.toFixed(2)}</span>
+                <span className="text-gradient">{formatINR(total)}</span>
               </div>
             </div>
           </div>
@@ -257,7 +258,7 @@ const Checkout = () => {
           </div>
 
           <Button className="mt-8 w-full shadow-button" size="lg" onClick={handlePay} disabled={processing}>
-            {processing ? "Processing..." : `Pay Now — $${total.toFixed(2)}`}
+            {processing ? "Processing..." : `Pay Now — ${formatINR(total)}`}
           </Button>
           {!paymentIsValid && <p className="mt-3 text-sm text-muted-foreground">Enter payment details to continue.</p>}
         </div>
