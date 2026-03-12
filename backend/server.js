@@ -2,6 +2,10 @@ const express = require("express");
 const cors = require("cors");
 require("dotenv").config();
 
+// TEMP: Debug Mongo connection string
+// eslint-disable-next-line no-console
+console.log(process.env.MONGO_URL);
+
 const connectDB = require("./config/db");
 const seedAdmin = require("./config/seedAdmin");
 const seedShoes = require("./config/seedShoes");

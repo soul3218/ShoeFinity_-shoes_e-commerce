@@ -1,5 +1,7 @@
-export const API_BASE_URL = (import.meta.env.VITE_API_URL as string | undefined) ?? "http://localhost:5000";
-
+export const API_BASE_URL =
+  (import.meta.env.VITE_API_URL as string | undefined) ??
+  "https://shoefinity-shoes-e-commerce-t6q0.onrender.com";
+  
 export function withApiBase(path: string) {
   if (path.startsWith("http://") || path.startsWith("https://")) return path;
   return `${API_BASE_URL}${path.startsWith("/") ? path : `/${path}`}`;
